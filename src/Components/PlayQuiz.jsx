@@ -128,11 +128,16 @@ export default function PlayQuiz() {
       }
       else {
         setResultPage(true)
+        const db = getDatabase(app);
         userResponse.map((response) => {
           if (response.answer === response.correctAns) {
             setScore(prevscore => prevscore + 1)
           }
+          set(ref(db, 'usersScore/'+response.name+'_'+response.roll+'_'+Date.now()),response);
+
         })
+        toast.success('Quiz Submitted Successfully..')
+        toast.info('You can close the App now')
         return () => clearInterval(interval)
 
       }
