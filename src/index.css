@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* 
+#quiz_slider .slick-next{
+    background-color: #1F2937 !important;
+    top: 50% !important;
+    right: 30% !important;
+     width: 50px !important;
+     height: 50px !important;
+    font-size: 50px !important;
+   
+} */
+
+
+#quiz_slider .slick-prev{
+    background-color: #1F2937 !important;
+    top: 50% !important;
+    left: 20% !important;
+    z-index: 100 !important;
+    font-size: 50px !important;
+    width: 50px !important;
+    height: 50px !important;
+
+}
+#quiz_slider .slick-next{
+    background-color: #1F2937 !important;
+    top: 50% !important;
+    right: 20% !important;
+    font-size: 50px !important;
+    width: 50px !important;
+    height: 50px !important;
+}
+
