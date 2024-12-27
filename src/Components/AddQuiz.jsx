@@ -4,11 +4,12 @@ import app from './config/firebase';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router';
 import { context } from './Context';
+import Second_Auth from './Second_Auth';
 
 export default function AddQuiz() {
-  const {login,setLogin}=useContext(context)
+  const {login,password,role}=useContext(context)
   const navigate=useNavigate()
-    const {role}=useContext(context)
+   
 
   useEffect(()=>{
       if(!(login && role=='Admin')){
@@ -35,23 +36,29 @@ export default function AddQuiz() {
   }
   return (
    <>
-    
-<div className='max-w-[100%] bg-gradient-to-br from-blue-300 via-transparent to-blue-100 min-h-screen '>
+    {
+      password
+      ?
+      ''
+      :
+      <Second_Auth/>
+    }
+<div className={`max-w-[100%] bg-gradient-to-br from-blue-300 via-transparent to-blue-100 min-h-screen ${password?'':'blur-md'}`}>
 <form class="max-w-sm mx-auto p-4"  autoComplete='off' onSubmit={AddQuestion}>
   <div class="mb-5">
-    <input type="text" id="email" name='question' class="bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-800 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Question" required />
+    <input type="text" id="question" name='question' class="bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-800 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Question" required />
   </div>
   <div class="mb-5">
-    <input type="text" id="email" name='option1' class="bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-800 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Option1" required />
+    <input type="text" id="option1" name='option1' class="bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-800 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Option1" required />
   </div>
   <div class="mb-5">
-    <input type="text" id="email" name='option2' class="bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-800 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Option2" required />
+    <input type="text" id="option2" name='option2' class="bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-800 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Option2" required />
   </div>
   <div class="mb-5">
-    <input type="text" id="email" name='option3' class="bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-800 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Option3" required />
+    <input type="text" id="option3" name='option3' class="bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-800 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Option3" required />
   </div>
   <div class="mb-5">
-    <input type="text" id="email" name='option4' class="bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-800 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Option4" required />
+    <input type="text" id="option4" name='option4' class="bg-gray-50 border border-gray-300 text-gray-600 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-800 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Option4" required />
   </div>
   <div class="mb-5">
   <label for="CorrectAnswer" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>

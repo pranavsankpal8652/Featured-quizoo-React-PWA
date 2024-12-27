@@ -5,11 +5,12 @@ import { data, useNavigate } from 'react-router';
 import { context } from './Context';
 import { toast } from 'react-toastify';
 import { useMediaQuery } from 'react-responsive';
+import Second_Auth from './Second_Auth';
 
 export default function ViewQuiz() {
-    const {login,setLogin}=useContext(context)
+    const {login,password,role}=useContext(context)
     const navigate=useNavigate()
-  const {role}=useContext(context)
+  
   const isMobile = useMediaQuery({ maxWidth: 768 }); // Mobile screen width
   useEffect(()=>{
     if (isMobile) {
@@ -57,7 +58,15 @@ export default function ViewQuiz() {
         }
     }
   return (
-<div className='max-w-[100%] bg-gradient-to-br from-blue-300 via-transparent to-blue-100 min-h-screen'>
+    <>
+     {
+          password
+          ?
+          ''
+          :
+          <Second_Auth/>
+    }
+    <div className={`max-w-[100%] bg-gradient-to-br from-blue-300 via-transparent to-blue-100 min-h-screen ${password?'':'blur-md'}`}>
 <div class="relative overflow-x-auto max-w-[1340px] mx-auto p-6 hidden md:block">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -130,6 +139,9 @@ export default function ViewQuiz() {
     </div>
 </div>
 </div>
+    </>
+    
+
 
 
   )

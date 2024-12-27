@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default function Header() {
-  const { login, setLogin } = useContext(context)
+  const { login, setLogin,setPassword } = useContext(context)
   const navigate = useNavigate()
   const [Canvas, setCanvas] = useState(false)
   const [profileOptions, setProfileOPtions] = useState(false)
@@ -14,21 +14,14 @@ export default function Header() {
   const showcanvas = () => {
     setCanvas(!Canvas)
   }
-  const playquiz = () => {
-    if (!login) {
-      toast.warning('Login First to give quiz!')
-      navigate('/')
-    }
-    else {
-      navigate('/play_quiz')
-    }
-  }
+ 
 
   const openMenu = () => {
     setProfileOPtions(!profileOptions)
   }
   const Logout = () => {
     setLogin(false)
+    setPassword(false)
     localStorage.clear()
     navigate('/')
   }
