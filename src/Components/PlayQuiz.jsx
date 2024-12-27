@@ -14,7 +14,7 @@ import Quiz_Result from "./Quiz_Result";
 export default function PlayQuiz() {
   var [userResponse, setuserResponse] = useState([])
   var [ResultPage, setResultPage] = useState(false)
-  var [timer, setTimer] = useState(25.00)
+  var [timer, setTimer] = useState(3600)
   var [score, setScore] = useState(0)
   var interval
   const location = useLocation()
@@ -23,7 +23,7 @@ export default function PlayQuiz() {
 // console.log(userResponse)
   useEffect(() => {
     // Reset state when component mounts
-    setTimer(25.00);
+    setTimer(3600);
     setuserResponse([]);
     setScore(0);
     setResultPage(false);
@@ -145,6 +145,15 @@ export default function PlayQuiz() {
 
   }, [timer,quizess.length])
 
+  const formatTime = (seconds) => {
+    const hrs = Math.floor(seconds / 3600);
+    const mins = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    return `${hrs.toString().padStart(2, '0')}:${mins
+      .toString()
+      .padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      
+  };
   return (
     <div id="quiz_slider" className="p-5 min-h-screen bg-gradient-to-br from-blue-300 via-transparent to-blue-100">
       {
@@ -176,7 +185,7 @@ export default function PlayQuiz() {
       }
 
       <div className="absolute top-20 right-20 bg-red-400 p-2">
-        Time:{timer.toFixed(2)}Sec
+        Time: {formatTime(timer)} Second
       </div>
       <div className={`absolute top-[90%] right-[40%] bg-blue-400 p-2 rounded-lg d hover:bg-blue-700 hover:text-white ${ResultPage ? 'hidden' : ''}`}>
         <button onClick={SubmitQUiz} >
