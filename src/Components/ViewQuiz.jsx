@@ -44,7 +44,7 @@ export default function ViewQuiz() {
     },[])
 
     const deleteQuiz=()=>{
-        if(confirm('Are you Sure TO Delete The Whole Quiz?')){
+        if(confirm('Are you Sure TO Delete This Quiz?')){
             const db = getDatabase(app);
             const quizList=ref(db,'quizess/');
             remove(quizList)
