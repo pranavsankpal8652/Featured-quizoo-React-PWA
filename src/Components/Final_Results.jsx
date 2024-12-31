@@ -43,18 +43,25 @@ export default function Final_Results() {
 	}, [])
 
     const deleteScores=()=>{
-        if(confirm('Are you Sure To Delete All the Scores of Quiz?')){
-            const db = getDatabase(app);
-            const userList=ref(db,'usersScore/');
-            remove(userList)
-            .then(()=>{
-                toast.info('Scores deleted')
-                setUsers([])
-            })
-            .catch((err)=>{
-                toast.error(err)
-            })
-        }
+		if(Users.length>0)
+		{
+			if(confirm('Are you Sure To Delete All the Scores of Quiz?')){
+				const db = getDatabase(app);
+				const userList=ref(db,'usersScore/');
+				remove(userList)
+				.then(()=>{
+					toast.info('Scores deleted')
+					setUsers([])
+				})
+				.catch((err)=>{
+					toast.error(err)
+				})
+			}
+		}
+		else{
+			toast.warn('No Users yet!')
+		}
+      
     }
 
 

@@ -54,7 +54,7 @@ export default function ViewQuiz() {
 
         }
         else {
-            toast.error('No Quiz Yet')
+            toast.warn('No Quiz Yet')
         }
 
     }
