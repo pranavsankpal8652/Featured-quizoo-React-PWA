@@ -20,7 +20,7 @@ export default function Student_Login() {
             roll:e.target.Roll.value
         }
         localStorage.setItem('StudentInfo',JSON.stringify(student))
-       console.log(JSON.parse(localStorage.getItem('StudentInfo')))
+    //    console.log(JSON.parse(localStorage.getItem('StudentInfo')))
        navigate('/play_quiz')
         e.target.reset()
     }

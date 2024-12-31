@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import app from './config/firebase';
-import { getDatabase, onValue, ref } from 'firebase/database';
+import { getDatabase, onValue, ref, remove } from 'firebase/database';
 import { Link } from 'react-router';
 import { context } from './Context';
 import Second_Auth from './Second_Auth';
+import { toast } from 'react-toastify';
 
 export default function Final_Results() {
 	const { password } = useContext(context)
@@ -123,7 +124,7 @@ export default function Final_Results() {
 					</table>
 					<div className='w-fit mx-auto my-7'>
 						<button className='text-md text-white bg-cyan-800 hover:bg-slate-500 rounded-lg p-[10px_20px]' onClick={deleteScores}>
-							Delete This Quiz
+							Delete Scores
 						</button>
 					</div>
 				</div>

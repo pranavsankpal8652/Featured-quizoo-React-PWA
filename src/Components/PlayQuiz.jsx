@@ -1,6 +1,3 @@
-
-"use client";
-
 import { useContext, useEffect, useState } from "react";
 import Slider from "react-slick";
 import { getDatabase, ref, onValue, set } from "firebase/database";
@@ -19,15 +16,16 @@ export default function PlayQuiz() {
   var interval
   const location = useLocation()
   const [quizess, setQuizess] = useState([])
-  const navigate=useNavigate()
-// console.log(userResponse)
+  const navigate = useNavigate()
+  const {Published} = useContext(context)
+  // console.log(userResponse)
   useEffect(() => {
     // Reset state when component mounts
     setTimer(3600);
     setuserResponse([]);
     setScore(0);
     setResultPage(false);
-    if(!localStorage.getItem('StudentInfo')){
+    if (!localStorage.getItem('StudentInfo')) {
       navigate('/student_login')
     }
   }, [location]);
@@ -43,7 +41,7 @@ export default function PlayQuiz() {
         if (response.answer === response.correctAns) {
           setScore(prevscore => prevscore + 1)
         }
-        set(ref(db, 'usersScore/'+response.name+'_'+response.roll+'_'+Date.now()),response);
+        set(ref(db, 'usersScore/' + response.name + '_' + response.roll + '_' + Date.now()), response);
 
       })
 
@@ -116,10 +114,10 @@ export default function PlayQuiz() {
 
 
   useEffect(() => {
-    if (quizess.length == 0) {
+    if (quizess.length == 0 || !Published) {
       return () => clearInterval(interval)
     }
-    else  {
+    else {
       if (timer > 0) {
         interval = setInterval(() => {
           setTimer((prevtimer) => prevtimer - 1)
@@ -133,7 +131,7 @@ export default function PlayQuiz() {
           if (response.answer === response.correctAns) {
             setScore(prevscore => prevscore + 1)
           }
-          set(ref(db, 'usersScore/'+response.name+'_'+response.roll+'_'+Date.now()),response);
+          set(ref(db, 'usersScore/' + response.name + '_' + response.roll + '_' + Date.now()), response);
 
         })
         toast.success('Quiz Submitted Successfully..')
@@ -143,7 +141,7 @@ export default function PlayQuiz() {
       }
     }
 
-  }, [timer,quizess.length])
+  }, [timer, quizess.length])
 
   const formatTime = (seconds) => {
     const hrs = Math.floor(seconds / 3600);
@@ -152,7 +150,7 @@ export default function PlayQuiz() {
     return `${hrs.toString().padStart(2, '0')}:${mins
       .toString()
       .padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
-      
+
   };
   return (
     <div id="quiz_slider" className="p-5 min-h-screen bg-gradient-to-br from-blue-300 via-transparent to-blue-100">
@@ -163,7 +161,7 @@ export default function PlayQuiz() {
           :
           <Slider {...settings}>
             {
-              quizess.length > 0
+              (quizess.length > 0 && Published)
                 ?
                 quizess.map((quiz, index) => {
                   return (
@@ -183,15 +181,24 @@ export default function PlayQuiz() {
           </Slider>
 
       }
+      {
+        (quizess.length > 0 && Published)
+        ?
+        <>
+          <div className="absolute top-20 right-20 bg-red-400 p-2">
+            Time: {formatTime(timer)} Second
+          </div>
+          <div className={`absolute top-[90%] right-[40%] bg-blue-400 p-2 rounded-lg d hover:bg-blue-700 hover:text-white ${ResultPage ? 'hidden' : ''}`}>
+            <button onClick={SubmitQUiz} >
+              Submit
+            </button>
+          </div>
+        </>
+        :
+        ''
 
-      <div className="absolute top-20 right-20 bg-red-400 p-2">
-        Time: {formatTime(timer)} Second
-      </div>
-      <div className={`absolute top-[90%] right-[40%] bg-blue-400 p-2 rounded-lg d hover:bg-blue-700 hover:text-white ${ResultPage ? 'hidden' : ''}`}>
-        <button onClick={SubmitQUiz} >
-          Submit
-        </button>
-      </div>
+      }
+
     </div>
   );
 }
