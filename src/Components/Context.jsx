@@ -11,8 +11,7 @@ export default function Context({children}) {
    const [login,setLogin]=useState(checkUserSession)
    const [role,setRole]=useState(checkUserRole)
    const [password,setPassword]=useState(checkPassword)
-   const [Published,setPublished]=useState(false)
-   const data={login,setLogin,role,setRole,password,setPassword,Published,setPublished}
+   const data={login,setLogin,role,setRole,password,setPassword}
   return (
    <context.Provider value={data}>
       {children}

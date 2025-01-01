@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { getDatabase, ref, onValue, remove } from "firebase/database";
+import { getDatabase, ref, onValue, remove, set } from "firebase/database";
 import app from './config/firebase';
 import { data, useNavigate } from 'react-router';
 import { context } from './Context';
@@ -8,9 +8,9 @@ import { useMediaQuery } from 'react-responsive';
 import Second_Auth from './Second_Auth';
 
 export default function ViewQuiz() {
-    const { login, password, role, Published, setPublished } = useContext(context)
+    const { login, password, role } = useContext(context)
     const navigate = useNavigate()
-    
+
     useEffect(() => {
         if (!login && role !== 'Admin') {
             toast.warning('Login as Admin first ')
@@ -50,7 +50,11 @@ export default function ViewQuiz() {
                     .catch((err) => {
                         toast.error(err)
                     })
+                    const Published = ref(db, 'publishQuiz');
+                    remove(Published)
+                    return () => unsubscribe();
             }
+          
 
         }
         else {
@@ -61,8 +65,10 @@ export default function ViewQuiz() {
     const publishQuiz = () => {
         if (quizess.length > 0) {
             if (confirm('Publish this Quiz?')) {
-                setPublished(true)
+                const db = getDatabase(app);
+                set(ref(db, 'publishQuiz'), {isPublished:true});
                 toast.success('Quiz Published')
+
             }
 
         }

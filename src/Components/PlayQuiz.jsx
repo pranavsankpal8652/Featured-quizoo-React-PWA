@@ -16,9 +16,9 @@ export default function PlayQuiz() {
   var interval
   const location = useLocation()
   const [quizess, setQuizess] = useState([])
+  var [Published, setPublished] = useState(false)
+
   const navigate = useNavigate()
-  const {Published} = useContext(context)
-  // console.log(userResponse)
   useEffect(() => {
     // Reset state when component mounts
     setTimer(3600);
@@ -30,8 +30,7 @@ export default function PlayQuiz() {
     }
   }, [location]);
 
-
-  //  console.log(userResponse)  
+  //Submit Quiz
   const SubmitQUiz = () => {
     if (confirm('Are You sure to Submit the Quiz')) {
       setResultPage(true)
@@ -51,9 +50,22 @@ export default function PlayQuiz() {
 
     }
   }
+  //Quiz Publish Status Check
+  useEffect(() => {
+    const db = getDatabase(app);
+    const starCountRef = ref(db, 'publishQuiz');
+    onValue(starCountRef, (data) => {
+      if (data.val()) {
+        const publsh = data.val()
+        if (publsh.isPublished) {
+          setPublished(true)
+        }
+      }
 
-  //  console.log(ResultPage
+    })
+  }, [])
 
+  //slider
   var settings = {
     dots: false,
     infinite: false,
@@ -96,6 +108,7 @@ export default function PlayQuiz() {
 
   };
 
+  //setQuizessfromDB
   useEffect(() => {
 
     const db = getDatabase(app);
@@ -112,9 +125,9 @@ export default function PlayQuiz() {
     });
   }, [])
 
-
+  //timer
   useEffect(() => {
-    if (quizess.length == 0 || !Published) {
+    if (quizess.length == 0 && !Published) {
       return () => clearInterval(interval)
     }
     else {
@@ -143,6 +156,7 @@ export default function PlayQuiz() {
 
   }, [timer, quizess.length])
 
+  //formarTimer
   const formatTime = (seconds) => {
     const hrs = Math.floor(seconds / 3600);
     const mins = Math.floor((seconds % 3600) / 60);
@@ -183,19 +197,19 @@ export default function PlayQuiz() {
       }
       {
         (quizess.length > 0 && Published)
-        ?
-        <>
-          <div className="absolute top-20 right-20 bg-red-400 p-2">
-            Time: {formatTime(timer)} Second
-          </div>
-          <div className={`absolute top-[90%] right-[40%] bg-blue-400 p-2 rounded-lg d hover:bg-blue-700 hover:text-white ${ResultPage ? 'hidden' : ''}`}>
-            <button onClick={SubmitQUiz} >
-              Submit
-            </button>
-          </div>
-        </>
-        :
-        ''
+          ?
+          <>
+            <div className="absolute top-20 right-20 bg-red-400 p-2">
+              Time: {formatTime(timer)} Second
+            </div>
+            <div className={`absolute top-[90%] right-[40%] bg-blue-400 p-2 rounded-lg d hover:bg-blue-700 hover:text-white ${ResultPage ? 'hidden' : ''}`}>
+              <button onClick={SubmitQUiz} >
+                Submit
+              </button>
+            </div>
+          </>
+          :
+          ''
 
       }
 
