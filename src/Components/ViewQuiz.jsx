@@ -4,7 +4,6 @@ import app from './config/firebase';
 import { data, useNavigate } from 'react-router';
 import { context } from './Context';
 import { toast } from 'react-toastify';
-import { useMediaQuery } from 'react-responsive';
 import Second_Auth from './Second_Auth';
 
 export default function ViewQuiz() {

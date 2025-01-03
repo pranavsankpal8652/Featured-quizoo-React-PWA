@@ -25,10 +25,11 @@ export default function PlayQuiz() {
     setuserResponse([]);
     setScore(0);
     setResultPage(false);
+    setQuizess([])
     if (!localStorage.getItem('StudentInfo')) {
       navigate('/student_login')
     }
-  }, [location]);
+  }, []);
 
   //Submit Quiz
   const SubmitQUiz = () => {
@@ -115,13 +116,19 @@ export default function PlayQuiz() {
     const starCountRef = ref(db, 'quizess');
     onValue(starCountRef, (data) => {
       var quiz_arr = []
-      const quiz = data.val()
-      for (var question of Object.values(quiz)) {
-        // console.log(question)
-        quiz_arr.push(question)
+      if(data.val()){
+        const quiz = data.val()
+        for (var question of Object.values(quiz)) {
+          // console.log(question)
+          quiz_arr.push(question)
+
+        }
+        setQuizess([...quiz_arr])
+      }
+      else{
+        setQuizess([])
 
       }
-      setQuizess([...quiz_arr])
     });
   }, [])
 
