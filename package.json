@@ -23,7 +23,8 @@
     "react-slick": "^0.30.3",
     "react-toastify": "^11.0.1",
     "slick-carousel": "^1.8.1",
-    "slick-slider": "^1.8.2"
+    "slick-slider": "^1.8.2",
+    "vite-plugin-pwa": "^0.21.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
