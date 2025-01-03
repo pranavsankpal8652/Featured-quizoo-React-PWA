@@ -3,6 +3,11 @@ import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
+  server: {
+    host: '0.0.0.0', // Allows access from any device on the same network
+    port: 5173, // Change to your desired port if necessary
+  },
+
   plugins: [
     react(),
     VitePWA({
@@ -16,7 +21,7 @@ export default defineConfig({
         short_name: 'Quizoo',
         description: 'A Featured Quiz At Your Fingertips',
         start_url: '/',
-        display: "standalone", 
+        display: standalone, 
         background_color: "#ffffff",
         theme_color: "#000000",
         icons: [
