@@ -16,8 +16,10 @@ export default defineConfig({
         short_name: 'Quizoo',
         description: 'A Featured Quiz At Your Fingertips',
         start_url: '/',
-        theme_color: '#ffffff',
-        "icons": [
+        display: "standalone", 
+        background_color: "#ffffff",
+        theme_color: "#000000",
+        icons: [
           {
             "src": "/android-launchericon-72-72.png",
             "sizes": "72x72",
