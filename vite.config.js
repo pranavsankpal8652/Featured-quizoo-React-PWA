@@ -21,7 +21,7 @@ export default defineConfig({
         short_name: 'Quizoo',
         description: 'A Featured Quiz At Your Fingertips',
         start_url: '/',
-        display: standalone, 
+        display: "standalone", 
         background_color: "#ffffff",
         theme_color: "#000000",
         icons: [
