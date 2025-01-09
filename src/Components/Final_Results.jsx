@@ -76,17 +76,17 @@ export default function Final_Results() {
 					<Second_Auth />
 			}
 			<div className={`max-w-[100%] bg-gradient-to-br from-blue-300 via-transparent to-blue-100 min-h-screen ${password ? '' : 'blur-md'}`}>
-				<div class="relative max-w-[1340px] mx-auto  py-6 px-1">
-					<table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-						<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+				<div className="relative max-w-[1340px] mx-auto  py-6 px-1">
+					<table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+						<thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 							<tr>
-								<th scope="col" class="md:px-6 md:py-3 p-2 w-auto" >
+								<th scope="col" className="md:px-6 md:py-3 p-2 w-auto" >
 									Student Name_Roll
 								</th>
-								<th scope="col" class="md:px-6 md:py-3 px-2">
+								<th scope="col" className="md:px-6 md:py-3 px-2">
 									Score
 								</th>
-								<th scope="col" class="md:px-6 md:py-3 hidden md:block">
+								<th scope="col" className="md:px-6 md:py-3 hidden md:block">
 									Details
 								</th>
 							</tr>
@@ -100,13 +100,13 @@ export default function Final_Results() {
 											Object.entries(user).map(([user_name, answers]) => {
 												// console.log(user_name,answers[0].score)
 												return (
-													<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 ">
-														<th scope="row" class="md:px-6 md:py-4 px-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+													<tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 ">
+														<th scope="row" className="md:px-6 md:py-4 px-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
 															{user_name}														</th>
-														<td class="md:px-6  py-4  text-center md:text-left">
+														<td className="md:px-6  py-4  text-center md:text-left">
 															{answers[0].score}
 														</td>
-														<td class="px-6 py-4 hidden md:block">
+														<td className="px-6 py-4 hidden md:block">
 															<Link to='/detail_score' className='underline'>View Details</Link>
 														</td>
 
@@ -118,8 +118,8 @@ export default function Final_Results() {
 
 
 									:
-									<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
-										<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" colSpan={6}>
+									<tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-center">
+										<th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" colSpan={6}>
 											No Users Yet
 										</th>
 

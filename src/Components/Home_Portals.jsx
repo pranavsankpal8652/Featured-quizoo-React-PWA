@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { Card, Dropdown } from "flowbite-react";
-import { Link, useNavigate } from 'react-router';
-import { getDatabase, ref, set } from "firebase/database";
+import {  useNavigate } from 'react-router';
 import { context } from './Context';
 
 export default function Home_Portals({ Portal_name, portal_desc }) {
@@ -26,10 +25,10 @@ export default function Home_Portals({ Portal_name, portal_desc }) {
     return (
         <>
             <Card className="max-w-sm animate-fadeIN ">
-                <div className="flex flex-col items-center  w-[240px] lg:w-[300px] ">
+                <div className="px-1 py-6 flex flex-col items-center  w-[300px] lg:w-[350px]">
 
                     <h5 className="mb-1 text-xl font-bold text-gray-900 dark:text-white">{Portal_name}</h5>
-                    <span className="text-sm text-gray-500 dark:text-gray-400">{portal_desc}</span>
+                    <div className="text-sm text-gray-500 dark:text-gray-400"> {portal_desc || 'Loading description...'}</div>
                     <div className="mt-4 flex space-x-3 lg:mt-6">
                         {
                             Portal_name === 'Admin'

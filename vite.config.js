@@ -5,7 +5,7 @@ import { VitePWA } from 'vite-plugin-pwa';
 export default defineConfig({
   server: {
     host: '0.0.0.0', // Allows access from any device on the same network
-    port: 5173, // Change to your desired port if necessary
+    port: 5174, // Change to your desired port if necessary
   },
 
   plugins: [
