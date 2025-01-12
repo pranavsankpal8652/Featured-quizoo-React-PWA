@@ -18,7 +18,8 @@ export default function AddQuiz() {
   }, [login])
   const AddQuestion = (e) => {
     e.preventDefault()
-    var QuizNumber=e.target.QuizNumber.value
+    var QuizNumber=e.target.QuizNumber.value.trim()
+    console.log()
     const quiz = {
       title: e.target.question.value,
       option1: e.target.option1.value,

@@ -186,7 +186,7 @@ export default function PlayQuiz() {
 	return (
 		<>
 
-			<div className="p-5 min-h-screen bg-gradient-to-br from-blue-300 via-transparent to-blue-100 relative">
+			<div className="p-5 min-h-screen bg-gradient-to-br from-blue-300 via-transparent to-blue-100 relative ">
 				<div className={`text-center flex justify-center items-center h-screen ${loading ? 'block' : 'hidden'}`}>
 					<div role="status">
 						<svg aria-hidden="true" className="inline w-12 h-12 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -204,8 +204,7 @@ export default function PlayQuiz() {
 						<>
 							{
 								quizess.length > 0 && Published !== "" &&
-								<CustomSlider>
-									{
+							
 										quizess.map((quiz, index) => (
 											<Quiz_Section
 												quiz={quiz}
@@ -214,9 +213,7 @@ export default function PlayQuiz() {
 												key={index}
 											/>
 										))
-									}
-
-								</CustomSlider>
+								
 							}
 							{
 								(quizess.length == 0) && !loading
@@ -238,7 +235,7 @@ export default function PlayQuiz() {
 							<div className="absolute top-2 right-20 bg-red-400 p-2">
 								Time: {formatTime(timer)} Second
 							</div>
-							<div className={`absolute top-[70%] right-[40%] bg-blue-400 p-2 rounded-lg d hover:bg-blue-700 hover:text-white ${ResultPage ? 'hidden' : ''}`}>
+							<div className={`text-center text-lg bg-blue-400 p-2 rounded-lg d hover:bg-blue-700 hover:text-white ${ResultPage ? 'hidden' : ''}`}>
 								<button onClick={SubmitQUiz} >
 									Submit
 								</button>

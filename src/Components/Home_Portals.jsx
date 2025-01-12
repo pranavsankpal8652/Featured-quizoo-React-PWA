@@ -28,7 +28,7 @@ export default function Home_Portals({ Portal_name, portal_desc }) {
                 <div className="px-1 py-6 flex flex-col items-center  w-[300px] lg:w-[350px]">
 
                     <h5 className="mb-1 text-xl font-bold text-gray-900 dark:text-white">{Portal_name}</h5>
-                    <div className="text-sm text-gray-500 dark:text-gray-400"> {portal_desc || 'Loading description...'}</div>
+                    <div className="text-sm text-gray-500 dark:text-gray-400"> {portal_desc }</div>
                     <div className="mt-4 flex space-x-3 lg:mt-6">
                         {
                             Portal_name === 'Admin'

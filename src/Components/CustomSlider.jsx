@@ -20,7 +20,7 @@ const CustomSlider = ({ children }) => {
   };
 
   return (
-    <>
+  
     <div className="relative w-full overflow-hidden">
       {/* Slider Wrapper */}
       <div
@@ -40,9 +40,7 @@ const CustomSlider = ({ children }) => {
       </div>
 
       {/* Left Arrow */}
-      
-    </div>
-    <button
+      <button
         className={`absolute left-[17%] lg:top-1/2  transform -translate-y-1/2 text-green-500 text-[3rem]    rounded ${
           currentIndex === 0 ? "opacity-50 cursor-not-allowed" : ""
         }`}
@@ -64,8 +62,10 @@ const CustomSlider = ({ children }) => {
         <BiSolidRightArrowSquare />
 
       </button>
+    </div>
+   
     
-    </>
+    
     
   );
 };
